@@ -1,0 +1,33 @@
+1. Show Customers (their full names, customer ID, and country) who are not in the US
+
+SELECT firstname, lastname, customerid, country
+FROM Customers
+WHERE Country != "USA";
+
+2. Show only customers from Brazil
+
+SELECT *
+FROM customers
+WHERE country = "Brazil";
+
+3. Find the Invoices of customers who are from Brazil. The resulting table should show the customer's full name, Invoice ID, Date of the invoice, and billing country.
+
+SELECT firstname, lastname, invoiceid, invoicedate, billingcountry
+FROM invoices
+LEFT JOIN customers
+ON customers.customerid = invoices.customerid
+WHERE billingcountry = "Brazil";
+
+4. How many invoices were there in 2009?
+
+SELECT COUNT(*)
+FROM invoices
+WHERE invoiceDate BETWEEN '2009-01-01' AND '2009-12-31';
+
+5. What are the total sales for 2009?
+
+SELECT SUM (unitprice * quantity)
+FROM invoice_items
+LEFT JOIN invoices
+ON invoice_items.invoiceid = invoices.invoiceid
+WHERE invoicedate BETWEEN '2009-01-01' AND '2009-12-31';
